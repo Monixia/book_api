@@ -17,7 +17,7 @@ const port = process.env.PORT || 8080;
 /**
  * set routes
  */
-app.use('/api/books', bookRoutes);
+app.use('/api/book', bookRoutes);
 app.get('*', (req, res) =>
 	res.status(200).send({message: 'Welcome to this API!'}));
 
