@@ -15,10 +15,10 @@ class PolicyController {
 	 */
 	static async getAll(req, res) {
 		try {
-			const policies = await BookService.getAll();
+			const books = await BookService.getAll();
 
-			if (policies.length > 0)
-				util.setSuccess(200, 'Books Received', policies);
+			if (books.length > 0)
+				util.setSuccess(200, 'Books Received', books);
 			else util.setSuccess(200, 'No Book found');
 
 			return util.send(res);
