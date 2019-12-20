@@ -55,7 +55,7 @@ The REST API to the book_api server
 
 ### Request
 
-`POST /api/book/`
+`POST /api/book/{id}`
 
     curl -i --header "Content-Type: application/json" \
       --request POST \
