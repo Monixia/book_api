@@ -54,8 +54,12 @@ The REST API to the book_api server
 	Content-Length: 46
 	Date: Fri, 20 Dec 2019 17:00:52 GMT
 	Connection: keep-alive
-
-{"status":"success","message":"No Book found"}
+```json
+{ 
+	"status":"success",
+	"message":"No Book found"
+}
+```
 
 ## Create a new Book
 
@@ -77,7 +81,18 @@ The REST API to the book_api server
 	Date: Fri, 20 Dec 2019 17:09:10 GMT
 	Connection: keep-alive
 
-{"status":"success","message":"Book Added","data":{"book_id":"387181ef-e19c-4f88-ae68-a9fcd248edc0","title":"xyz","rating":3,"description":null}}
+```json
+{
+	"status":"success",
+	"message":"Book Added",
+	"data":{
+		"book_id":"387181ef-e19c-4f88-ae68-a9fcd248edc0",
+		"title":"xyz",
+		"rating":3,
+		"description":null
+	}
+}
+```
 
 
 ## Get a specific Book
@@ -97,7 +112,18 @@ The REST API to the book_api server
 	Date: Fri, 20 Dec 2019 17:15:44 GMT
 	Connection: keep-alive
 
-{"status":"success","message":"Book Found","data":{"book_id":"387181ef-e19c-4f88-ae68-a9fcd248edc0","title":"xyz","description":null,"rating":3}}
+```json
+{
+	"status":"success",
+	"message":"Book Found",
+	"data":{
+		"book_id":"387181ef-e19c-4f88-ae68-a9fcd248edc0",
+		"title":"xyz",
+		"description":null,
+		"rating":3
+	}
+}
+```
 
 ## Change a Books's state
 
@@ -119,7 +145,15 @@ The REST API to the book_api server
 	Date: Fri, 20 Dec 2019 17:24:27 GMT
 	Connection: keep-alive
 
-	{"status":"success","message":"Book updated","data":{"title":"test"}}
+```json
+{
+	"status":"success",
+	"message":"Book updated",
+	"data": {
+		"title":"test"
+	}
+}
+```
 
 
 ## Delete a Book
@@ -141,4 +175,9 @@ The REST API to the book_api server
 	Date: Fri, 20 Dec 2019 17:25:35 GMT
 	Connection: keep-alive
 
-	{"status":"success","message":"Book deleted"}
+```json
+{
+	"status":"success",
+	"message":"Book deleted"
+}
+```
