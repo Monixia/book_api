@@ -27,6 +27,12 @@ Run
 npm run dev
 ```
 
+```
+this is the environment: development
+Server is running on PORT 8080
+```
+
+
 
 # REST API
 
