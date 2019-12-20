@@ -17,7 +17,7 @@ npm install
 
 # Usage
 
-set database configuration - /api/server/src/config/config.js
+set database configuration in ```/api/server/src/config/config.js```
 
 ## Development
 
