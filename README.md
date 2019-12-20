@@ -9,7 +9,8 @@
 
 ## Installing
 ```bash
-git clone git@github.com:Monixia/book_api.git
+git clone https://github.com/Monixia/book_api.git
+cd book_api
 npm install
 
 ```
