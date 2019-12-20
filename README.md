@@ -7,14 +7,9 @@
 - NodeJS
 - npm
 
-## Cloning
-```bash
-git clone --recursive git@rg-git.corp.dsec.ru:EDR/src/visualizer.git
-```
-
 ## Installing
 ```bash
-git clone
+git clone git@github.com:Monixia/book_api.git
 npm install
 
 ```
