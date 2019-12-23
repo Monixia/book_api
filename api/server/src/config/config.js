@@ -5,7 +5,7 @@ module.exports = {
     database: 'book',
     username: 'postgres',
     password: null,
-    host: '127.0.0.1',
+    host: 'book_server_pg.book-test-net',
     port: '5432',
     dialect: 'postgres'
   },
