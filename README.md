@@ -72,22 +72,206 @@ node:latest
 
 The REST API to the book_api server
 
-## Get list of Books
+## Author 
 
-### Request
+### Get list of Author
+
+#### Request
+
+`GET /api/author/`
+
+    curl -i -H 'Accept: application/json' http://localhost:8080/api/author/
+
+#### Response
+
+	HTTP/1.1 200 OK
+	X-Powered-By: Express
+	Content-Type: application/json; charset=utf-8
+	Content-Length: 48
+	Date: Mon, 23 Dec 2019 13:54:11 GMT
+	Connection: keep-alive
+
+```json
+{ 
+	"status":"success",
+	"message":"No Author found"
+}
+```
+
+
+### Create a new Author
+
+#### Request
+
+`POST /api/author/`
+
+    curl -i --header "Content-Type: application/json" \
+      --request POST \
+      --data '{"name": "James Hadley Chase", "description": "An English writer"}' \
+      http://localhost:8080/api/author
+
+#### Response
+
+	HTTP/1.1 201 Created
+	X-Powered-By: Express
+	Content-Type: application/json; charset=utf-8
+	Content-Length: 167
+	Date: Mon, 23 Dec 2019 13:56:12 GMT
+	Connection: keep-alive
+
+```json
+{
+	"status":"success",
+	"message":"Author Added",
+	"data":{
+		"author_id":"c48b09ac-0e6e-4be9-acb0-a51d9b556368",
+		"name":"James Hadley Chase",
+		"description":"An English writer"
+	}
+}
+```
+
+
+### Get a specific Author
+
+#### Request
+
+`GET /api/author/:id`
+
+    curl -i -H 'Accept: application/json' http://localhost:8080/api/author/c48b09ac-0e6e-4be9-acb0-a51d9b556368
+
+#### Response
+
+	HTTP/1.1 200 OK
+	X-Powered-By: Express
+	Content-Type: application/json; charset=utf-8
+	Content-Length: 167
+	Date: Mon, 23 Dec 2019 13:57:49 GMT
+	Connection: keep-alive
+
+```json
+{
+	"status":"success",
+	"message":"Author Found",
+	"data":{
+		"author_id":"c48b09ac-0e6e-4be9-acb0-a51d9b556368",
+		"name":"James Hadley Chase",
+		"description":"An English writer"
+	}
+}
+```
+
+
+### Get list of Author
+
+#### Request
+
+`GET /api/author/`
+
+    curl -i -H 'Accept: application/json' http://localhost:8080/api/author/
+
+#### Response
+
+	HTTP/1.1 200 OK
+	X-Powered-By: Express
+	Content-Type: application/json; charset=utf-8
+	Content-Length: 173
+	Date: Mon, 23 Dec 2019 13:59:16 GMT
+	Connection: keep-alive
+
+```json
+{
+	"status":"success",
+	"message":"Authors Received",
+	"data":[
+		{
+			"author_id":"c48b09ac-0e6e-4be9-acb0-a51d9b556368",
+			"name":"James Hadley Chase",
+			"description":"An English writer"
+		}
+	]
+}
+```
+
+
+### Change a Authors's state
+
+#### Request
+
+`PUT /api/author/:id`
+
+    curl -i --header "Content-Type: application/json" \
+      --request PUT \
+      --data '{"description":"Novelist"}' \
+      http://localhost:8080/api/author/c48b09ac-0e6e-4be9-acb0-a51d9b556368
+
+#### Response
+
+	HTTP/1.1 200 OK
+	X-Powered-By: Express
+	Content-Type: application/json; charset=utf-8
+	Content-Length: 81
+	Date: Mon, 23 Dec 2019 14:00:37 GMT
+	Connection: keep-alive
+
+```json
+{
+	"status":"success",
+	"message":"Author updated",
+	"data":{
+		"description":"Novelist"
+	}
+}
+```
+
+
+### Delete a Author
+
+#### Request
+
+`DELETE /api/author/:id`
+
+    curl -i --header "Content-Type: application/json" \
+      --request DELETE \
+      http://localhost:8080/api/author/c48b09ac-0e6e-4be9-acb0-a51d9b556368
+
+#### Response
+
+	HTTP/1.1 200 OK
+	X-Powered-By: Express
+	Content-Type: application/json; charset=utf-8
+	Content-Length: 45
+	Date: Fri, 20 Dec 2019 17:25:35 GMT
+	Connection: keep-alive
+
+```json
+{
+	"status":"success",
+	"message":"Author deleted"
+}
+```
+
+
+
+## Book 
+
+### Get list of Book
+
+#### Request
 
 `GET /api/book/`
 
     curl -i -H 'Accept: application/json' http://localhost:8080/api/book/
 
-### Response
+#### Response
 
 	HTTP/1.1 200 OK
 	X-Powered-By: Express
 	Content-Type: application/json; charset=utf-8
 	Content-Length: 46
-	Date: Fri, 20 Dec 2019 17:00:52 GMT
+	Date: Mon, 23 Dec 2019 14:05:49 GMT
 	Connection: keep-alive
+
 ```json
 { 
 	"status":"success",
@@ -95,55 +279,59 @@ The REST API to the book_api server
 }
 ```
 
-## Create a new Book
 
-### Request
+### Create a new Book
 
-`POST /api/book/:id`
+#### Request
+
+`POST /api/book/`
 
     curl -i --header "Content-Type: application/json" \
       --request POST \
-      --data '{"title":"xyz","rating":"3"}' \
+      --data '{"title":"The World in My Pocket","genre": "Thriller","rating": 4,"description":"The World in My Pocket is a 1959 thriller novel by the British writer James Hadley Chase","author_id": "c48b09ac-0e6e-4be9-acb0-a51d9b556368"}' \
       http://localhost:8080/api/book
 
-### Response
+#### Response
 
 	HTTP/1.1 201 Created
 	X-Powered-By: Express
 	Content-Type: application/json; charset=utf-8
-	Content-Length: 145
-	Date: Fri, 20 Dec 2019 17:09:10 GMT
+	Content-Length: 320
+	Date: Mon, 23 Dec 2019 14:08:18 GMT
 	Connection: keep-alive
+
 
 ```json
 {
 	"status":"success",
 	"message":"Book Added",
 	"data":{
-		"book_id":"387181ef-e19c-4f88-ae68-a9fcd248edc0",
-		"title":"xyz",
-		"rating":3,
-		"description":null
+		"book_id":"be8244d6-5d71-4206-9deb-abff748fc445",
+		"title":"The World in My Pocket",
+		"genre":"Thriller",
+		"rating":4,
+		"description":"The World in My Pocket is a 1959 thriller novel by the British writer James Hadley Chase",
+		"author_id":"c48b09ac-0e6e-4be9-acb0-a51d9b556368"
 	}
 }
 ```
 
 
-## Get a specific Book
+### Get a specific Book
 
-### Request
+#### Request
 
 `GET /api/book/:id`
 
-    curl -i -H 'Accept: application/json' http://localhost:8080/api/book/387181ef-e19c-4f88-ae68-a9fcd248edc0
+    curl -i -H 'Accept: application/json' http://localhost:8080/api/book/be8244d6-5d71-4206-9deb-abff748fc445
 
-### Response
+#### Response
 
 	HTTP/1.1 200 OK
 	X-Powered-By: Express
 	Content-Type: application/json; charset=utf-8
-	Content-Length: 145
-	Date: Fri, 20 Dec 2019 17:15:44 GMT
+	Content-Length: 435
+	Date: Mon, 23 Dec 2019 14:09:45 GMT
 	Connection: keep-alive
 
 ```json
@@ -151,56 +339,106 @@ The REST API to the book_api server
 	"status":"success",
 	"message":"Book Found",
 	"data":{
-		"book_id":"387181ef-e19c-4f88-ae68-a9fcd248edc0",
-		"title":"xyz",
-		"description":null,
-		"rating":3
+		"book_id":"be8244d6-5d71-4206-9deb-abff748fc445",
+		"title":"The World in My Pocket",
+		"description":"The World in My Pocket is a 1959 thriller novel by the British writer James Hadley Chase",
+		"genre":"Thriller",
+		"rating":4,
+		"author_id":"c48b09ac-0e6e-4be9-acb0-a51d9b556368",
+		"author":{
+			"author_id":"c48b09ac-0e6e-4be9-acb0-a51d9b556368",
+			"name":"James Hadley Chase",
+			"description":"Novelist"
+		}
 	}
 }
 ```
 
-## Change a Books's state
 
-### Request
+### Get list of Book
+
+#### Request
+
+`GET /api/book/`
+
+    curl -i -H 'Accept: application/json' http://localhost:8080/api/book/
+
+#### Response
+
+	HTTP/1.1 200 OK
+	X-Powered-By: Express
+	Content-Type: application/json; charset=utf-8
+	Content-Length: 441
+	Date: Mon, 23 Dec 2019 14:10:52 GMT
+	Connection: keep-alive
+
+
+```json
+{
+	"status":"success",
+	"message":"Books Received",
+	"data":[
+		{
+			"book_id":"be8244d6-5d71-4206-9deb-abff748fc445",
+			"title":"The World in My Pocket",
+			"description":"The World in My Pocket is a 1959 thriller novel by the British writer James Hadley Chase",
+			"genre":"Thriller",
+			"rating":4,
+			"author_id":"c48b09ac-0e6e-4be9-acb0-a51d9b556368",
+			"author":{
+				"author_id":"c48b09ac-0e6e-4be9-acb0-a51d9b556368",
+				"name":"James Hadley Chase",
+				"description":"Novelist"
+			}
+		}
+	]
+}
+```
+
+
+### Change a Books's state
+
+#### Request
 
 `PUT /api/book/:id`
 
     curl -i --header "Content-Type: application/json" \
       --request PUT \
-      --data '{"title":"test"}' \
-      http://localhost:8080/api/book/387181ef-e19c-4f88-ae68-a9fcd248edc0
+      --data '{"description":"Publication date - 1959"}' \
+      http://localhost:8080/api/book/be8244d6-5d71-4206-9deb-abff748fc445
 
-### Response
+#### Response
 
 	HTTP/1.1 200 OK
 	X-Powered-By: Express
 	Content-Type: application/json; charset=utf-8
-	Content-Length: 69
-	Date: Fri, 20 Dec 2019 17:24:27 GMT
+	Content-Length: 94
+	Date: Mon, 23 Dec 2019 14:12:22 GMT
 	Connection: keep-alive
+
 
 ```json
 {
 	"status":"success",
 	"message":"Book updated",
-	"data": {
-		"title":"test"
+	"data":{
+		description":"Publication date - 1959"
 	}
 }
 ```
 
 
-## Delete a Book
+### Delete a Book
 
-### Request
+#### Request
 
 `DELETE /api/book/:id`
 
     curl -i --header "Content-Type: application/json" \
       --request DELETE \
-      http://localhost:8080/api/book/387181ef-e19c-4f88-ae68-a9fcd248edc0
+      http://localhost:8080/api/book/be8244d6-5d71-4206-9deb-abff748fc445
 
-### Response
+#### Response
 
 	HTTP/1.1 200 OK
 	X-Powered-By: Express
@@ -215,3 +453,4 @@ The REST API to the book_api server
 	"message":"Book deleted"
 }
 ```
+
