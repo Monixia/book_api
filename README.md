@@ -11,9 +11,8 @@
 ```bash
 git clone https://github.com/Monixia/book_api.git
 cd book_api
-npm install
-npm install -g nodemon
 
+npm install
 ```
 
 # Usage
@@ -25,6 +24,13 @@ set database configuration in ```/api/server/src/config/config.js```
 
 Run
 ```
+npm install -g nodemon
+
+npm install -g sequelize-cli
+
+sequelize db:migrate:undo:all 
+sequelize db:migrate
+
 npm run dev
 ```
 
