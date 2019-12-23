@@ -20,19 +20,15 @@ npm install
 
 ## Development with own DB
 
-set database configuration in ```/api/server/src/config/config.js```
-
-Run
+1. Set your database configuration in: `/api/server/src/config/config.js`
+2. Install nodemon globally: `npm install -g nodemon`
+3. Install sequelize cli globally `npm install -g sequelize-cli`
+4. Run migration: 
 ```
-npm install -g nodemon
-
-npm install -g sequelize-cli
-
 sequelize db:migrate:undo:all 
 sequelize db:migrate
-
-npm run dev
 ```
+5. Start up the server: `npm run dev`
 
 ```
 this is the environment: development
