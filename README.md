@@ -40,26 +40,37 @@ Server is running on PORT 8080
 ```
 
 
-## Development with DB in docker
+## Development with DB and server in docker
 
-Run
-```
-docker network create book-test-net
-
-docker run --net book-test-net --rm --detach --interactive --publish 5432:5432 --name book_server_pg --env POSTGRES_DB=book postgres:11
-
-docker run --net=book-test-net --rm --name book-sever --volume ${PWD}:/app --workdir /app --interactive --tty --publish 8080:8080 node:latest ./run-dev.sh
-```
-
-```
-this is the environment: development
-Server is running on PORT 8080
-```
-
-Remove docker after usage
-```
-docker network rm book-test-net
-```
+1. Create docker network: 
+`docker network create book-test-net`
+1. Run postgresql with docker in background:
+`docker run 
+--net book-test-net 
+--rm 
+--detach 
+--interactive 
+--name book_server_pg 
+--env POSTGRES_DB=book 
+postgres:11`
+1. Run server in console
+`docker run 
+--net=book-test-net 
+--rm
+--name book-sever 
+--volume ${PWD}:/app 
+--workdir /app
+--interactive
+--tty
+--publish 8080:8080 
+node:latest
+/bin/bash run-dev.sh`
+1. Make requests to the server
+1. Stop server (Ctrl+C in console)
+1. Stop postgresql:
+`docker container stop book_server_pg`
+1. Remove docker network: 
+`docker network rm book-test-net`
 
 # REST API
 
