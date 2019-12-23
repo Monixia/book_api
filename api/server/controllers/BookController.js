@@ -4,7 +4,7 @@ import {isUUID, isInt} from '../utils/validate';
 
 const util = new Util();
 
-class PolicyController {
+class BookController {
 
 	/**
 	 * get all book control - validate and catch error
@@ -37,14 +37,20 @@ class PolicyController {
 	 */
 	static async add(req, res) {
 
-		if (!req.body.title || !req.body.rating) {
+		if (!req.body.title || !req.body.rating || !req.body.genre || !req.body.author_id) {
 			util.setError(400, 'Incomplete information');
+			return util.send(res);
+		} else if (!isInt(req.body.rating)) {
+			util.setError(400, 'Invalid rating value');
+			return util.send(res);
+		} else if (!isUUID(req.body.author_id)) {
+			util.setError(400, 'Invalid author UUID');
 			return util.send(res);
 		}
 
 		try {
-			const policy = await BookService.add(req.body);
-			util.setSuccess(201, 'Book Added', policy);
+			const book = await BookService.add(req.body);
+			util.setSuccess(201, 'Book Added', book);
 			return util.send(res);
 		} catch (error) {
 			util.setError(400, error.message);
@@ -68,14 +74,17 @@ class PolicyController {
 		} else if (data.rating && !isInt(data.rating)) {
 			util.setError(400, 'Invalid rating value');
 			return util.send(res);
+		}  if (data.author_id && !isUUID(data.author_id)) {
+			util.setError(400, 'Invalid author UUID');
+			return util.send(res);
 		}
 
 		try {
-			const policy = await BookService.update(id, data);
+			const book = await BookService.update(id, data);
 
-			if (!policy)
+			if (!book)
 				util.setError(404, `Book with the id ${id} cannot be found`);
-			else util.setSuccess(200, 'Book updated', policy);
+			else util.setSuccess(200, 'Book updated', book);
 
 			return util.send(res);
 		} catch (error) {
@@ -100,11 +109,11 @@ class PolicyController {
 		}
 
 		try {
-			const policy = await BookService.get(id);
+			const book = await BookService.get(id);
 
-			if (!policy)
+			if (!book)
 				util.setError(404, `Book with the id ${id} cannot be found`);
-			else util.setSuccess(200, 'Book Found', policy);
+			else util.setSuccess(200, 'Book Found', book);
 
 			return util.send(res);
 		} catch (error) {
@@ -129,9 +138,9 @@ class PolicyController {
 		}
 
 		try {
-			const policy = await BookService.remove(id);
+			const book = await BookService.remove(id);
 
-			if (policy)
+			if (book)
 				util.setSuccess(200, 'Book deleted');
 			else util.setError(404, `Book with the id ${id} cannot be found`);
 
@@ -143,4 +152,4 @@ class PolicyController {
 	}
 }
 
-export default PolicyController;
+export default BookController;
