@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon --exec babel-node ./api/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "export NODE_ENV=development && nodemon --exec babel-node ./api/index.js",
+    "test": "export NODE_ENV=test && sequelize db:migrate:undo:all && sequelize db:migrate && nyc --require @babel/register mocha ./api/test/test.js --timeout 20000 --exit"
   },
   "keywords": [],
   "author": "monixia",
@@ -28,6 +28,11 @@
     "@babel/preset-env": "^7.7.7",
     "@babel/register": "^7.7.7",
     "@babel/runtime": "^7.7.7",
-    "babel-loader": "^8.0.6"
+    "async": "^3.1.0",
+    "babel-loader": "^8.0.6",
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "mocha": "^6.2.2",
+    "nyc": "^15.0.0"
   }
 }

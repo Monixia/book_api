@@ -35,6 +35,8 @@ this is the environment: development
 Server is running on PORT 8080
 ```
 
+6. Run test: `npm run test`
+
 
 ## Development with DB and server in docker
 
