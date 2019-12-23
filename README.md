@@ -18,9 +18,10 @@ npm install -g nodemon
 
 # Usage
 
-set database configuration in ```/api/server/src/config/config.js```
 
-## Development
+## Development with own DB
+
+set database configuration in ```/api/server/src/config/config.js```
 
 Run
 ```
@@ -32,6 +33,21 @@ this is the environment: development
 Server is running on PORT 8080
 ```
 
+## Development with DB in docker
+
+Run
+```
+docker network create book-test-net
+
+docker run --net book-test-net --rm --detach --interactive --publish 5432:5432 --name book_server_pg --env POSTGRES_DB=book postgres:11
+
+docker run --net=book-test-net --rm --name book-sever --volume ${PWD}:/app --workdir /app --interactive --tty --publish 8080:8080 node:latest ./run-dev.sh
+```
+
+```
+this is the environment: development
+Server is running on PORT 8080
+```
 
 
 # REST API
