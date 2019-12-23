@@ -422,7 +422,7 @@ The REST API to the book_api server
 	"status":"success",
 	"message":"Book updated",
 	"data":{
-		description":"Publication date - 1959"
+		"description":"Publication date - 1959"
 	}
 }
 ```
