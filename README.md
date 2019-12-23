@@ -39,6 +39,11 @@ this is the environment: development
 Server is running on PORT 8080
 ```
 
+Remove docker after usage
+```
+docker network rm book-test-net
+```
+
 ## Development with DB in docker
 
 Run
